@@ -106,11 +106,11 @@ else{
 	$doc = $doc->GetDom();
 	
 	$article = new Article($doc);
-	
+ //adding header tag to show that its a headline
 	$headline = "<h1>" . $article->getHeadline() . "</h1>";
 	echo $headline;
 	echo "<br>";
-
+//adding img tag to display image
 	$mainImage = '<a><img src = "' . $article->getImage() . '"></a>';
 	echo $mainImage;
 	echo "<br>";
