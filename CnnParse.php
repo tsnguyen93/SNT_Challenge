@@ -6,7 +6,8 @@ class Article{
 		$this->doc = $doc;
 	}
 	
-	
+	// This is grabs every content within an h1 tag.
+	// This captures the headline of the article.
 	Public function getHeadline(){
 		$headers = $this->doc->getElementsByTagName('h1');
 		$headers_arr = array();
@@ -25,7 +26,8 @@ class Article{
 			
 	}
 	
-	
+	//There were multiple images of the same image but different size.
+	//This captures one of the images to display but iterates through all images scraped.
 	Public function getImage(){
 		$images = $this->doc->getElementsByTagName('img');
 		$images_arr = array();
@@ -45,7 +47,9 @@ class Article{
 
 	}
 
-
+	//This function captured the whole story of the article without html tags attached.
+	//Part of the story was located in p tags and the rest was located in the div class = "zn-body__paragraph".
+	//This grabs everything and stores each value into an array and returns it to the user.
 	Public function getStory(){
 		$stories = $this->doc->getElementsByTagName('p');
 		$xpath = new DOMXPath($this->doc);		
@@ -75,7 +79,9 @@ $url = $_GET["article"];
 if ($url != 'http://www.cnn.com/2016/06/16/design/nasa-mars-posters/index.html'){
 	echo "Please go back and use the link " . "<b>" . "http://www.cnn.com/2016/06/16/design/nasa-mars-posters/index.html" . "</b>" ;
 }
-else{	
+else{
+
+//Creating DOM document and Xpath objects to parse through
 	$string = file_get_contents($url);
 	$doc = new DOMDocument();
 	libxml_use_internal_errors(true);
@@ -85,6 +91,7 @@ else{
 
 
 	$article = new Article($doc);
+	
 	$headline = "<h1>" . $article->getHeadline() . "</h1>";
 	echo $headline;
 	echo "<br>";
