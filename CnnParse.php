@@ -6,6 +6,7 @@ class DomDoc{
 		$this->url = $url;
 	}
 	
+	//Loading the DomDocument to parse through
 	Public function GetDom(){
 		$string = file_get_contents($this->url);
 		$doc = new DOMDocument();
